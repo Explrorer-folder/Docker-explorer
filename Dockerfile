@@ -20,3 +20,10 @@ RUN cd ..  \
     && wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.31/bin/apache-tomcat-10.1.31.tar.gz \
     && tar -xvzf apache-tomcat-10.1.31.tar.gz \
     && rm apache-tomcat-10.1.31.tar.gz
+
+# /app/build/idea-new
+COPY .idea idea-new
+
+COPY .idea/*.xml idea-new-xml/
+COPY tomcat.tar.gz /app
+ADD https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.31/bin/apache-tomcat-10.1.31.tar.gz tomcat-add.tar.gz
