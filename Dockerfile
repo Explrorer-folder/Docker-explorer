@@ -8,7 +8,7 @@ WORKDIR app
 WORKDIR build
 # в этом моменте будет директория /app/build (/ + app + build)
 
-RUN touch test.txt && echo "Hello world!" >> test.txt
+RUN touch test2.txt && echo "Hello world!" >> test2.txt
 RUN apk add openjdk17
 
 # С помощью '\' и '&&' можно переносить команду, чтобы не писать её в одной длинной строке
