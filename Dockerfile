@@ -27,3 +27,9 @@ COPY .idea idea-new
 COPY .idea/*.xml idea-new-xml/
 COPY tomcat.tar.gz /app
 ADD https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.31/bin/apache-tomcat-10.1.31.tar.gz tomcat-add.tar.gz
+
+#run - аргумент для самого скрипта catalina.sh
+EXPOSE 8080
+ENTRYPOINT ["/app/apache-tomcat-10.1.31/bin/catalina.sh"]
+CMD ["run"]
+# /app/apache-tomcat-10.1.31/bin/catalina.sh run
