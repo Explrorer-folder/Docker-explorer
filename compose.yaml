@@ -1,0 +1,24 @@
+name: barabanov
+
+services:
+  first:
+    image: alpine:latest
+    command: ["top"] #аналог CMD
+
+  database:
+    image: postgres:latest
+    ports:
+      - "5435:5432"
+    environment:
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_USER=postgres
+
+  web:
+    image: barabanov-web
+    # т.к. d application-dev мы указали host postgres, а сейчас назвали сервис как database, то такого host не будет.
+    #Нужно либо переименовать сервис, либо хост указать 'database' вместо 'postgres', либо задать новый url с помощью environment variables
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/postgres
+    build:
+      context: .
+      dockerfile: prod.Dockerfile
