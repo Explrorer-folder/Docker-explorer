@@ -4,6 +4,8 @@ services:
   first:
     image: alpine:latest
     command: ["top"] #аналог CMD
+    networks:
+      - frontend
 
   database:
     image: postgres:latest
@@ -12,6 +14,8 @@ services:
     environment:
       - POSTGRES_PASSWORD=pass
       - POSTGRES_USER=postgres
+    networks:
+      - backend
 
   web:
     image: barabanov-web
@@ -22,3 +26,12 @@ services:
     build:
       context: .
       dockerfile: prod.Dockerfile
+    networks:
+      - backend
+      - frontend
+
+networks:
+  backend:
+    #по умолчани. тоже будет bridge. можно не указывать
+    driver: bridge
+  frontend:
